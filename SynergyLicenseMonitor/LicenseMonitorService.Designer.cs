@@ -1,6 +1,6 @@
 ﻿namespace SynergyLicenseMonitor
 {
-    partial class Service1
+    partial class LicenseMonitorService
     {
         /// <summary> 
         /// Required designer variable.

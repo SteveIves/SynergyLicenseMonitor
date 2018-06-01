@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:firewall="http://schemas.microsoft.com/wix/FirewallExtension">
+
+  <!--
+    When publishing a new version, change the version number and Product Id GUID.
+    *** NEVER CHANGE THE UpgradeCode GUID ***
+    -->
+
+  <Product
+    Name="Synergy/DE License Monitor"
+    Version="1.0"
+    Id="{EA4C4362-B327-4975-8677-DB60E3843924}"
+    Language="1033"
+    Manufacturer="Synergex International Corporation"
+    UpgradeCode="{A4DD4E41-481C-4D17-8B88-8CF5655A4723}">
+
+    <Package
+      Description="Synergy/DE License Monitor"
+      InstallerVersion="200"
+      Compressed="yes"
+      InstallScope="perMachine" />
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Setting these properties causes these URL's to be displayed when the application is selected in "Programs and Features"-->
+
+    <Property Id="ARPHELPLINK"      Value="https://github.com/SteveIves/SynergyLicenseMonitor/issues" />
+    <Property Id="ARPURLINFOABOUT"  Value="https://github.com/SteveIves/SynergyLicenseMonitor/wiki" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://github.com/SteveIves/SynergyLicenseMonitor/releases/latest" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Set the license text to be displayed before installation -->
+
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
+    <!-- ************************************************************************************************************* -->
+    <!--Set the images to be displayed in the UI-->
+
+    <WixVariable Id="WixUIBannerBmp" Value="banner.jpg"/>
+    <WixVariable Id="WixUIDialogBmp" Value="background.jpg"/>
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Set the icon to be used in "Programs & Features" -->
+
+    <Icon Id="ico_Icon.ico" SourceFile="..\SynergyLicenseMonitor\cog_32.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="ico_Icon.ico" />
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Set the installer UI type -->
+
+    <UI>
+      <UIRef Id="WixUI_FeatureTree"/>
+    </UI>
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Terminate the installation if .NET Framework 4.5.2 is not installed -->
+
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <Condition Message="This application requires .NET Framework 4.5.2 or higher. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45 >= "#379893"]]>
+    </Condition>
+
+    <!-- ************************************************************************************************************* -->
+    <!-- Define the folders that the installation uses -->
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- Program Files Folder -->
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="SynergexFolder" Name="Synergex">
+          <Directory Id="MAINFOLDER" Name="LicenseMonitor" />
+        </Directory>
+      </Directory>
+      <!-- Start Menu Folder -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="SynergyDE"/>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="MAINFOLDER">
+
+      <Component Id="File_$(var.SynergyLicenseMonitor.TargetFileName)" Guid="{B73856F2-A436-4B65-A63C-DBD3322346A4}">
+
+        <File Id="$(var.SynergyLicenseMonitor.TargetFileName)" KeyPath="yes" Source="$(var.SynergyLicenseMonitor.TargetPath)" Checksum="yes"/>
+
+        <!-- Register the service during install -->
+        <ServiceInstall
+          Id="SynergyLicenseMonitor_Install"
+          Name="SynergyLicenseMonitor"
+          DisplayName="Synergy/DE License Monitor"
+          Description="Monitors Synergy license usage over time and records information to a CSV file in the public documents folder."
+          Type="ownProcess"
+          Start="auto"
+          ErrorControl="normal"
+          Vital="yes" />
+
+         <!--Start the Service during install--> 
+        <ServiceControl
+          Id="SynergyLicenseMonitor_Start"
+          Name="SynergyLicenseMonitor"
+          Start="install"
+          Wait="yes" />
+
+        <!-- Stop and remove the Service during uninstall -->
+        <ServiceControl
+          Id="SynergyLicenseMonitor_Stop"
+          Name="SynergyLicenseMonitor"
+          Stop="both"
+          Remove="uninstall"
+          Wait="yes" />
+      </Component>
+
+      <Component Id="File_SynergyLicenseMonitor.pdb" Guid="{301E2297-D09C-477F-B452-ECBE6AE31264}">
+        <File Id="SynergyLicenseMonitor.pdb" KeyPath="yes" Source="$(var.SynergyLicenseMonitor.TargetDir)SynergyLicenseMonitor.pdb" Checksum="yes" />
+      </Component>
+
+      <Component Id="File_SynergyLicenseMonitor.exe.config" Guid="{51760974-83D5-4030-83A4-70561C31326A}">
+        <File Id="SynergyLicenseMonitor.exe.config" KeyPath="yes" Source="$(var.SynergyLicenseMonitor.TargetDir)SynergyLicenseMonitor.exe.config" Checksum="yes" />
+      </Component>
+
+      <Component Id="File_syncli_api.dll" Guid="{86893E44-BF50-4C95-9CD5-A83E9EB4FA91}">
+        <File Id="syncli_api.dll" KeyPath="yes" Source="$(var.SynergyLicenseMonitor.TargetDir)syncli_api.dll" Checksum="yes" />
+      </Component>
+
+    </DirectoryRef>
+
+    <!-- Core Shortcuts -->
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="Shortcuts_Core" Guid="{73C74CD8-D436-4166-A0AB-1F363B926462}">
+        <Shortcut Id="UninstallShortcut" Name="Uninstall Synergy License Monitor Service" Description="Uninstalls Synergy License Monitor Service" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]"/>
+        <RegistryValue Root="HKCU" Key="Software\Synergex\SynergyLicenseMonitor" Name="CoreShortcutsInstalled" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+      </Component>
+    </DirectoryRef>
+
+    <!-- Core Feature -->
+
+    <Feature Id="FeatureCore" Title="File Service" Level="1" Absent="disallow" Description="Installs the core components needed to use the File Service.">
+      <ComponentRef Id="File_$(var.SynergyLicenseMonitor.TargetFileName)" />
+      <ComponentRef Id="File_SynergyLicenseMonitor.pdb"/>
+      <ComponentRef Id="File_SynergyLicenseMonitor.exe.config" />
+      <ComponentRef Id="File_syncli_api.dll" />
+      <ComponentRef Id="Shortcuts_Core" />
+    </Feature>
+
+  </Product>
+
+</Wix>

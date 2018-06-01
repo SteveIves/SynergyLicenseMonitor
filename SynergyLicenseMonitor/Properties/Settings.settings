@@ -1,0 +1,93 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SynergyLicenseMonitor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IntervalInSeconds" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="LicenseCodes" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;GENL&lt;/string&gt;
+  &lt;string&gt;GENR&lt;/string&gt;
+  &lt;string&gt;LD00&lt;/string&gt;
+  &lt;string&gt;LD02&lt;/string&gt;
+  &lt;string&gt;LD05&lt;/string&gt;
+  &lt;string&gt;LD06&lt;/string&gt;
+  &lt;string&gt;LD08&lt;/string&gt;
+  &lt;string&gt;LD11&lt;/string&gt;
+  &lt;string&gt;LD12&lt;/string&gt;
+  &lt;string&gt;ODBCL&lt;/string&gt;
+  &lt;string&gt;ODBCR&lt;/string&gt;
+  &lt;string&gt;ONET&lt;/string&gt;
+  &lt;string&gt;PSDE&lt;/string&gt;
+  &lt;string&gt;PSW&lt;/string&gt;
+  &lt;string&gt;RUN&lt;/string&gt;
+  &lt;string&gt;WRUN&lt;/string&gt;
+  &lt;string&gt;XFSP&lt;/string&gt;
+  &lt;string&gt;XFSV&lt;/string&gt;
+  &lt;string&gt;GENL7&lt;/string&gt;
+  &lt;string&gt;GENR7&lt;/string&gt;
+  &lt;string&gt;LD00_7&lt;/string&gt;
+  &lt;string&gt;LD02_7&lt;/string&gt;
+  &lt;string&gt;LD05_7&lt;/string&gt;
+  &lt;string&gt;LD06_7&lt;/string&gt;
+  &lt;string&gt;LD07_7&lt;/string&gt;
+  &lt;string&gt;LD08_7&lt;/string&gt;
+  &lt;string&gt;LD11_7&lt;/string&gt;
+  &lt;string&gt;LD12_7&lt;/string&gt;
+  &lt;string&gt;ONET7&lt;/string&gt;
+  &lt;string&gt;PSDE7&lt;/string&gt;
+  &lt;string&gt;PSW7&lt;/string&gt;
+  &lt;string&gt;RPTW7&lt;/string&gt;
+  &lt;string&gt;RUN7&lt;/string&gt;
+  &lt;string&gt;WRUN7&lt;/string&gt;
+  &lt;string&gt;XFSP7&lt;/string&gt;
+  &lt;string&gt;XFSV7&lt;/string&gt;
+  &lt;string&gt;BLSRV8&lt;/string&gt;
+  &lt;string&gt;LMK8&lt;/string&gt;
+  &lt;string&gt;ODBC_8&lt;/string&gt;
+  &lt;string&gt;PSDE8&lt;/string&gt;
+  &lt;string&gt;PSW8&lt;/string&gt;
+  &lt;string&gt;PSWB8&lt;/string&gt;
+  &lt;string&gt;RPTW8&lt;/string&gt;
+  &lt;string&gt;RUN8&lt;/string&gt;
+  &lt;string&gt;SC_OD8&lt;/string&gt;
+  &lt;string&gt;SC_OR8&lt;/string&gt;
+  &lt;string&gt;SC_SQ8&lt;/string&gt;
+  &lt;string&gt;WRUN8&lt;/string&gt;
+  &lt;string&gt;XFSP8&lt;/string&gt;
+  &lt;string&gt;XFSV8&lt;/string&gt;
+  &lt;string&gt;BLSRV9&lt;/string&gt;
+  &lt;string&gt;LMK9&lt;/string&gt;
+  &lt;string&gt;ODBC_9&lt;/string&gt;
+  &lt;string&gt;PSDE9&lt;/string&gt;
+  &lt;string&gt;PSW9&lt;/string&gt;
+  &lt;string&gt;RPTW9&lt;/string&gt;
+  &lt;string&gt;RUN9&lt;/string&gt;
+  &lt;string&gt;SC_MY9&lt;/string&gt;
+  &lt;string&gt;SC_OD9&lt;/string&gt;
+  &lt;string&gt;SC_OR9&lt;/string&gt;
+  &lt;string&gt;SC_SQ9&lt;/string&gt;
+  &lt;string&gt;SDBMS9&lt;/string&gt;
+  &lt;string&gt;WRUN9&lt;/string&gt;
+  &lt;string&gt;XFSP9&lt;/string&gt;
+  &lt;string&gt;XFSV9&lt;/string&gt;
+  &lt;string&gt;BLS10&lt;/string&gt;
+  &lt;string&gt;LMK10&lt;/string&gt;
+  &lt;string&gt;PSDE10&lt;/string&gt;
+  &lt;string&gt;PSW10&lt;/string&gt;
+  &lt;string&gt;RPTW10&lt;/string&gt;
+  &lt;string&gt;RUN10&lt;/string&gt;
+  &lt;string&gt;SCMY10&lt;/string&gt;
+  &lt;string&gt;SCOD10&lt;/string&gt;
+  &lt;string&gt;SCOR10&lt;/string&gt;
+  &lt;string&gt;SCSQ10&lt;/string&gt;
+  &lt;string&gt;SDB10&lt;/string&gt;
+  &lt;string&gt;WRUN10&lt;/string&gt;
+  &lt;string&gt;XFSP10&lt;/string&gt;
+  &lt;string&gt;XFSV10&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
